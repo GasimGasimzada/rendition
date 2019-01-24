@@ -10,7 +10,12 @@ import { Tooltips } from './tooltips';
 
 const tooltip = new Tooltips();
 
-const prop = oneOfType([number, string, arrayOf(oneOfType([number, string]))]);
+const prop = oneOfType([
+	number,
+	string,
+	arrayOf(number.isRequired),
+	arrayOf(string.isRequired),
+]);
 
 const propTypes = {
 	width: prop,

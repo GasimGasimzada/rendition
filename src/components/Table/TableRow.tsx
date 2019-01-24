@@ -9,7 +9,7 @@ import { TableColumn } from 'rendition';
  * If a `render` function is available, use it to get the display value.
  */
 const renderField = <T extends {}>(row: T, column: TableColumn<T>): any => {
-	const value = get(row, column.field);
+	const value = get(row, (column as any).field);
 	if (column.render) {
 		return column.render(value, row);
 	}
@@ -64,7 +64,7 @@ export class TableRow<T> extends React.PureComponent<TableRowProps<T>, {}> {
 				)}
 				{map(columns, column => {
 					const cellAttributes = isFunction(column.cellAttributes)
-						? column.cellAttributes(data, get(data, column.field))
+						? column.cellAttributes(data, get(data, (column as any).field))
 						: column.cellAttributes || {};
 					return (
 						<a

@@ -6,7 +6,6 @@ import isArray = require('lodash/isArray');
 import isFunction = require('lodash/isFunction');
 import isPlainObject = require('lodash/isPlainObject');
 import map = require('lodash/map');
-import reject = require('lodash/reject');
 import reverse = require('lodash/reverse');
 import some = require('lodash/some');
 import sortBy = require('lodash/sortBy');
@@ -189,7 +188,7 @@ export default class Table<T> extends React.Component<
 			return data;
 		}
 
-		const column = find(this.props.columns, { field: sort.field });
+		const column: any = find(this.props.columns, { field: sort.field });
 
 		if (!column) {
 			return data;
@@ -273,7 +272,7 @@ export default class Table<T> extends React.Component<
 		const isChecked = !this.isChecked(item);
 		const checkedItems = isChecked
 			? this.state.checkedItems.concat(item)
-			: reject(this.state.checkedItems, { [rowKey]: identifier });
+			: this.state.checkedItems.filter(value => value[rowKey] !== identifier);
 
 		if (this.props.onCheck) {
 			this.props.onCheck(checkedItems);

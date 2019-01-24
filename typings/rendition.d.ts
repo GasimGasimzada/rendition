@@ -466,7 +466,7 @@ declare module 'rendition' {
 		cellAttributes?:
 			| React.AnchorHTMLAttributes<HTMLAnchorElement>
 			| ((value: any, row: T) => React.AnchorHTMLAttributes<HTMLAnchorElement>);
-		field: keyof T;
+		field: string | number | undefined;
 		icon?: string;
 		label?: string | JSX.Element;
 		render?: (value: any, row: T) => string | number | JSX.Element | null;
